@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId "com.example.bit_user.teamapp"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    testCompile 'junit:junit:4.12'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // 카카오스토리, 카카오톡 sdk를 사용하기 위해 필요.
+    compile 'com.mcxiaoke.volley:library:1.0.8'
+    compile group: 'com.android.support', name: 'support-v4', version: project.SUPPORTV4_VERSION
+
+    // 카카오스토리 sdk를 사용하기 위해 필요.
+    compile group: project.KAKAO_SDK_GROUP, name: getModuleName('kakaostory'), version: project.KAKAO_SDK_VERSION
+
+    // 카카오톡 sdk를 사용하기 위해 필요.
+    compile group: project.KAKAO_SDK_GROUP, name: getModuleName('kakaotalk'), version: project.KAKAO_SDK_VERSION
+
+    // push sdk를 사용하기 위해 필요.
+    compile group: project.KAKAO_SDK_GROUP, name: getModuleName('push'), version: project.KAKAO_SDK_VERSION
+
+    // storage sdk를 사용하기 위해 필요.
+    compile group: project.KAKAO_SDK_GROUP, name: getModuleName('storage'), version: project.KAKAO_SDK_VERSION
+}
+
